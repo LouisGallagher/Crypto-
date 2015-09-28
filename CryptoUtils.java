@@ -1,4 +1,4 @@
-public class cryptoutils {
+public class CryptoUtils {
     public static void main (String[] args) {
         System.out.println("Hello, world!");
     }
