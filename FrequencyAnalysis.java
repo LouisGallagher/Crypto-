@@ -28,7 +28,7 @@ public class FrequencyAnalysis {
         
         int frequency;
         for (char c : charSequence.toCharArray()) {
-            if (charFrequencyTable.hasKey(c)) {
+            if (charFrequencyTable.containsKey(c)) {
                 frequency = charFrequencyTable.get(c);
                 totalFrequency += frequency;
             }
@@ -48,7 +48,7 @@ public class FrequencyAnalysis {
         
         for (char c : message.toCharArray()) {
             
-            if (charFrequencyTable.hasKey(c)) {
+            if (charFrequencyTable.containsKey(c)) {
                 int cFrequency = charFrequencyTable.get(c);
                 charFrequencyTable.put(c, cFrequency + 1);
             }
