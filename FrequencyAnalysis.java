@@ -13,12 +13,13 @@ public class FrequencyAnalysis {
         
         System.out.println("Should be ~33%.");
         
-        HashMap<Char, Int> freqTable = getCharFrequencyTable(message);
+        HashMap<Character, Integer> freqTable = getCharFrequencyTable(message);
         float pctge = getCharPercentage(VOWELS, freqTable, message.length());
         
     }
 
-    public static float getCharPercentage (String charSequence, HashMap<Char, Int> charFrequencyTable, Int msgLength) {
+    public static float getCharPercentage (String charSequence, 
+            HashMap<Character, Integer> charFrequencyTable, int msgLength) {
         /**
          * Takes a list of characters and determines what percentage of times
          * they occur in a message.
@@ -37,11 +38,11 @@ public class FrequencyAnalysis {
         return percentage;
     }
     
-    public static HashMap<Char, Int> getCharFrequencyTable (String message) {
+    public static HashMap<Character, Integer> getCharFrequencyTable (String message) {
         /**
          * Takes a message, maps each character to the number of times it occurs.
          */
-        HashMap<Char, Int> charFrequencyTable = new HashMap<Char, Int>();
+        HashMap<Character, Integer> charFrequencyTable = new HashMap<Char, Int>();
         
         for (char c : message.toCharArray()) {
             
