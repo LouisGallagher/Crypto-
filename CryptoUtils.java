@@ -18,6 +18,7 @@ public class CryptoUtils {
         
         return ((float)vowelCount / (float)messageLength) * 100.0f;
     }
+    
     /*
     Can be used for both decryption and encryption i.e. pass in +/- shift value
     Currently doesn't handle punctuation
