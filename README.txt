@@ -1,10 +1,12 @@
 # Crypto-
 Library for Crypto
 
-List of stuff to Implement:
-  -Frequency analyser 
-  -Matrix transposer row->column, diagonal transposition etc
-  -affine solver 
-  -coprimality functions
-  -modular arithmetic stuff 
-  - shift fuctions
+
+
+TODO:
+  -Utils for common operations:
+    -Frequency analysis
+    -Matrix manipulation
+    -Modular arithmethic
+  -Librarys/ packages for specific cipher type i.e. transposition, substitution etc
+  -Stuff for attacking specific ciphers e.g. vigenere, auto, affine etc.
