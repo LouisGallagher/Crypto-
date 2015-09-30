@@ -14,7 +14,6 @@ public class IOutils {
          * Takes filename, reads it in as one block of characters without
          * spaces/newlines.
          */
-        
         String finalString = "";
         
         Scanner sc = null;
@@ -28,11 +27,12 @@ public class IOutils {
             String line;
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
-                linesProcessed++;
                 
                 if (!(hasCharCount && linesProcessed % 2 == 0)) {
                     lines.add(line);
                 }
+                
+                linesProcessed++;
             }
             
             StringBuilder sbuild = new StringBuilder();
