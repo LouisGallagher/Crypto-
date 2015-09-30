@@ -5,7 +5,7 @@ import java.util.Hashtable;
 public class CryptoUtils {
     /*
     Can be used for both decryption and encryption i.e. pass in +/- shift value
-    Currently doesn't handle punctuation
+    Currently doesn't handle punctuation i.e. will map punctuation back onto itself 
     */
     public static String ApplyShift(String message, int shift)
     {
