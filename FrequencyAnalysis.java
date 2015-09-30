@@ -38,11 +38,13 @@ public class FrequencyAnalysis {
         return percentage;
     }
     
-    public static HashMap<Character, Integer> getCharFrequencyTable (String message) {
+    public static HashMap<Character, Integer> getCharFrequencyTable (
+            String message) {
         /**
          * Takes a message, maps each character to the number of times it occurs.
          */
-        HashMap<Character, Integer> charFrequencyTable = new HashMap<Char, Int>();
+        HashMap<Character, Integer> charFrequencyTable = new HashMap<
+            Character, Integer>();
         
         for (char c : message.toCharArray()) {
             
