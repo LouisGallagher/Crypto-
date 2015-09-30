@@ -25,6 +25,7 @@ public class IOutils {
             ArrayList<String> lines = new ArrayList<String>();
             
             int linesProcessed = 0;
+            String line;
             while (sc.hasNextLine()) {
                 line = sc.nextLine();
                 linesProcessed++;
@@ -39,7 +40,7 @@ public class IOutils {
                 sbuild.append(line);
             }
             
-            finalMessage = sbuild.toString();
+            String finalMessage = sbuild.toString();
             finalMessage = finalMessage.replace(" ", "");
         }
         finally {
