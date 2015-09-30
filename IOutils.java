@@ -1,4 +1,4 @@
-import java.io.*;
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
@@ -40,8 +40,8 @@ public class IOutils {
                 sbuild.append(line);
             }
             
-            String finalMessage = sbuild.toString();
-            finalMessage = finalMessage.replace(" ", "");
+            finalString = sbuild.toString();
+            finalString = finalString.replace(" ", "");
         }
         finally {
             if (sc != null) {
@@ -49,6 +49,6 @@ public class IOutils {
             }
         }
         
-        return finalMessage;
+        return finalString;
     }
 }
