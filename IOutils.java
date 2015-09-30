@@ -2,8 +2,14 @@ import java.io.*;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
-public class IOutils throws IOException {
-    public static String parseFile (String fileName, Boolean hasCharCount) {
+public class IOutils {
+    public static void main (String[] args) {
+        String ciphertext = parseFile("Group1_Problem1.txt", true);
+        System.out.println(ciphertext);
+    }
+    
+    public static String parseFile (String fileName,
+            Boolean hasCharCount) throws IOException {
         /** 
          * Takes filename, reads it in as one block of characters without
          * spaces/newlines.
