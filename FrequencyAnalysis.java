@@ -1,6 +1,8 @@
 import java.util.HashMap;
 
 public class FrequencyAnalysis {
+    // Groups of letters and a rough percentage of their frequency in
+    // the English language.
     static final String ETAONISRH           = "ETAONISRHetaonisrh";
     static final double ETAONISRHpercentage = 70.0;
     
