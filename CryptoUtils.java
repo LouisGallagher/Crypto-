@@ -3,22 +3,6 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class CryptoUtils {
-
-	static final String VOWELS = "aeiouAEIOU";
-	       
-    public static float getVowelPercentage (String message) {
-        int messageLength = message.length();
-        
-        int vowelCount = 0;
-        for (int i = 0; i < messageLength; i++) {
-            if (VOWELS.indexOf(message.charAt(i)) >= 0) {
-                vowelCount += 1;   
-            }
-        }
-        
-        return ((float)vowelCount / (float)messageLength) * 100.0f;
-    }
-    
     /*
     Can be used for both decryption and encryption i.e. pass in +/- shift value
     Currently doesn't handle punctuation
