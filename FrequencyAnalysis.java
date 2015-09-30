@@ -26,9 +26,9 @@ public class FrequencyAnalysis {
         int totalFrequency = 0;
         
         int frequency;
-        for (Char c : charSequence) {
-            frequency = charFrequencyTable.get(c);
-            if (frequency != null) {
+        for (Char c : charSequence.toCharArray()) {
+            if (charFrequencyTable.hasKey(c)) {
+                frequency = charFrequencyTable.get(c);
                 totalFrequency += frequency;
             }
         }
@@ -43,13 +43,14 @@ public class FrequencyAnalysis {
          */
         HashMap<Char, Int> charFrequencyTable = new HashMap<Char, Int>();
         
-        for (Char c : message) {
-            int cFrequency = charFrequencyTable.get(c);
-            if (cFrequency == null) {
-                charFrequencyTable.put(c, 1);
+        for (Char c : message.toCharArray) {
+            
+            if (charFrequencyTable.hasKey(c)) {
+                int cFrequency = charFrequencyTable.get(c);
+                charFrequencyTable.put(c, cFrequency + 1);
             }
             else {
-                charFrequencyTable.put(c, cFrequency + 1);
+                charFrequencyTable.put(c, 1);
             }
         }
         
