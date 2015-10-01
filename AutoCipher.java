@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.lang.StringBuilder;
+import FrequencyAnalysis.*;
 
 public class AutoCipher {
     public static HashMap<Integer, Integer> getIntervalCounts (String message) {
@@ -31,5 +33,15 @@ public class AutoCipher {
         }
         
         return intervalCount;
+    }
+    
+    public static String takeNthChars (int n, String message) {
+        StringBuilder sbuilder = new StringBuilder();
+        
+        for (int i = 0; i < message.length(); i += n) {
+            sbuilder.append(message.charAt(i));
+        }
+        
+        return sbuilder.toString();
     }
 }
