@@ -15,7 +15,7 @@ public class AutoCipher {
         for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
             
-            if (charIndex.containsKey(c) {
+            if (charIndex.containsKey(c)) {
                 intervalLength = i - charIndex.get(c);
                 
                 if (intervalCount.containsKey(intervalLength)) {
