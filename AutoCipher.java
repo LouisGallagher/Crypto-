@@ -82,7 +82,7 @@ public class AutoCipher {
         // Smaller means closer match to English, in terms of letter frequency.
         double smallestEnglishDifference = Double.POSITIVE_INFINITY;
         
-        String decryptAttempt;
+        String decrypted;
         double englishDifference;
         for (char keyWordChar = 'a'; keyWordChar <= 'z'; keyWordChar++) {
             decrypted = decryptSequence(sequence, keyWordChar);
