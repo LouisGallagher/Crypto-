@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.lang.StringBuilder;
 
 import FrequencyAnalysis.*;
@@ -17,13 +18,31 @@ public class AutoCipher {
         HashMap<Integer, Integer> intervalCounts = getIntervalLengthFreq(ciphertext);
         // -> sort intervalCounts by the values, i.e. the frequencies?
         // pick one?
+        int intervalLength = null;
         
-        // 4) use takeChars() for (int i = 0; i < intervalLength; i++)
-        //      to get a list of decrypted takeChars() results.
-        // 5) join the list together. 1st character from 1st, 2nd, ... string,
-        // 2nd character from 1st, 2nd, ... string, etc.
+        ArrayList<String> jumbledDecryption = new ArrayList<String>();
+        for (int i = 0; i < intervalLength; i++) {
+            String selectedChars = takeChars(intervalLength, ciphertext, i);
+            String likelyDecryption = getLikelyDecryption(selectedChars);
+            jumbledDecryption.add(likelyDecryption);)
+        }
+    
+        StringBuilder plaintext = new StringBuilder();
         
-        return "temp";
+        boolean charsLeft = true;
+        int i = 0;
+        while (charsLeft) {
+            charsLeft = false;
+            
+            for (String selectedCharsDecrypted : jumbledDecryption) {
+                if (i < selectedCharsDecrypted.length()) {
+                    charsLeft = true;
+                    plaintext.append(selectedCharsDecrypted.charAt(i));
+                }
+            }
+        }
+        
+        return plaintext.toString();
     }
     
     public static HashMap<Integer, Integer> getIntervalLengthFreq (String message) {
@@ -75,7 +94,7 @@ public class AutoCipher {
         return sbuilder.toString();
     }
     
-    public static String tryKeyChars (String sequence) {
+    public static String getLikelyDecryption (String sequence) {
         /**
          * Similar scenario to decryptSequence(), except this tries all the
          * possible first keyWordChars and picks the best one using frequency
