@@ -7,22 +7,28 @@ import VigenereCipher.decryptChar;
 
 public class AutoCipher {
     public static void main (String[] args) {
-        // call solution here.
+        String ciphertext = parseFile(filename);
+        HashMap<Integer, Integer> intervalCounts = getIntervalLengthFreq(ciphertext);
+        for (Entry<Integer, Integer> entry : intervalCounts.entrySet()) {
+            Integer intervalLength = entry.getKey();
+            Integer count = entry.getValue();
+            System.out.println(intervalLength.toString() + " " + count.toString());
+        }
+        
+        /*
+        Derp sortedIntervalCounts = null;
+        from highestCount -> lowestCount, possibleKeyWordLength = intervalLength, only try a few:
+            String possibleDecryption = tryDecryptingAutoCipher(
+                ciphertext, possibleKeyWordLength);
+            System.out.println(possibleDecryption);
+            System.out.println("\n");
+        */
     }
     
-    public static String crackAutoCipher (String filename) {
-        /** Given only the ciphertext, attempts to break an Auto Cipher. */
-        
-        String ciphertext = parseFile(filename);
-        
-        HashMap<Integer, Integer> intervalCounts = getIntervalLengthFreq(ciphertext);
-        // -> sort intervalCounts by the values, i.e. the frequencies?
-        // pick one?
-        int intervalLength = null;
-        
+    public static String tryDecryptingAutoCipher (String ciphertext, int keyWordLength) {
         ArrayList<String> jumbledDecryption = new ArrayList<String>();
-        for (int i = 0; i < intervalLength; i++) {
-            String selectedChars = takeChars(intervalLength, ciphertext, i);
+        for (int i = 0; i < keyWordLength; i++) {
+            String selectedChars = takeChars(keyWordLength, ciphertext, i);
             String likelyDecryption = getLikelyDecryption(selectedChars);
             jumbledDecryption.add(likelyDecryption);)
         }
