@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.lang.Math.abs;
 
 public class FrequencyAnalysis {
     // Groups of letters and a rough percentage of their frequency in
@@ -27,6 +28,38 @@ public class FrequencyAnalysis {
         HashMap<Character, Integer> freqTable = getCharFrequencyTable(message);
         double pctge = getCharPercentage(VOWELS, freqTable, message.length());
         System.out.println(pctge);
+    }
+    
+    public static double getEnglishDifference (String message) {
+        /**
+         * Given a message, gets the % occurrence of various groups of
+         * characters within that message, and returns the difference
+         * between actual and expected %. Longer message = more accuracy.
+         * 
+         * e.g. given message="aeiou", goes through VOWELS constant and finds
+         * that 100.0% of the characters in message are in VOWELS. So:
+         *  total += | 100.0 - VOWELSpercentage |
+         * 
+         * The lower the value returned, the closer the text is to English.
+         */
+        double total = 0.0;
+        
+        HashMap<String, Double> expectedFreq = new HashMap<String, Double>();
+        expectedFreq.put(ETAONISRH, ETAONISRHpercentage);
+        expectedFreq.put(ETAON,     ETAONpercentage);
+        expectedFreq.put(LNRST,     LNRSTpercentage);
+        expectedFreq.put(VOWELS,    VOWELSpercentage);
+        expectedFreq.put(JKQXZ,     JKQXZpercentage);
+        
+        HashMap<Character, Integer> charFreqTable = getCharFrequencyTable(message);
+        double perc;
+        for (String charGroup : expectedFreq) {
+            expectedPerc = expectedFreq.get(charGroup);
+            perc = getCharPercentage(charGroup, charFreqTable, message.length());
+            total += Math.abs(expectedPerc - perc);
+        }
+        
+        return total;
     }
 
     public static double getCharPercentage (String charSequence, 
