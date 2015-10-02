@@ -19,6 +19,15 @@ public class FrequencyAnalysis {
     static final String JKQXZ               = "JKQXZjkqxz";
     static final double JKQXZpercentage     = 1.0;
     
+    static {
+        HashMap<String, Double> EXPECTEDFREQ = new HashMap<String, Double>();
+        EXPECTEDFREQ.put(ETAONISRH, ETAONISRHpercentage);
+        EXPECTEDFREQ.put(ETAON,     ETAONpercentage);
+        EXPECTEDFREQ.put(LNRST,     LNRSTpercentage);
+        EXPECTEDFREQ.put(VOWELS,    VOWELSpercentage);
+        EXPECTEDFREQ.put(JKQXZ,     JKQXZpercentage);
+    }
+    
     public static void main (String[] args) {
         // A test.
         String message = new String("aeioukkkkkyyyyy");
@@ -44,17 +53,10 @@ public class FrequencyAnalysis {
          */
         double total = 0.0;
         
-        HashMap<String, Double> expectedFreq = new HashMap<String, Double>();
-        expectedFreq.put(ETAONISRH, ETAONISRHpercentage);
-        expectedFreq.put(ETAON,     ETAONpercentage);
-        expectedFreq.put(LNRST,     LNRSTpercentage);
-        expectedFreq.put(VOWELS,    VOWELSpercentage);
-        expectedFreq.put(JKQXZ,     JKQXZpercentage);
-        
         HashMap<Character, Integer> charFreqTable = getCharFrequencyTable(message);
         double perc;
-        for (String charGroup : expectedFreq) {
-            expectedPerc = expectedFreq.get(charGroup);
+        for (String charGroup : EXPECTEDFREQ) {
+            expectedPerc = EXPECTEDFREQ.get(charGroup);
             perc = getCharPercentage(charGroup, charFreqTable, message.length());
             total += Math.abs(expectedPerc - perc);
         }
