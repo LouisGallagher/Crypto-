@@ -32,9 +32,12 @@ public class AutoCipher {
          * Interval length is the distance between equal characters
          * in the message.
          * 
-         * e.g. "abba"
-         * There is one interval of length 3 (a to a), and one interval
-         * of length 1 (b to b).
+         * e.g. "abbaa"
+         * There is one interval of length 3 (a to a), and two intervals
+         * of length 1 (a to a, b to b).
+         * So the method would return a map where:
+         *      3 -> 1,
+         *      1 -> 2
          */
         HashMap<Character, Integer> charIndex = new HashMap<Character, Integer>();
         HashMap<Integer, Integer> intervalCount = new HashMap<Integer, Integer>();
