@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
@@ -7,7 +8,7 @@ import VigenereCipher.decryptChar;
 
 public class AutoCipher {
     public static void main (String[] args) {
-        String ciphertext = parseFile(filename);
+        String ciphertext = parseFile("Group1_Problem1.txt", true);
         HashMap<Integer, Integer> intervalCounts = getIntervalLengthFreq(ciphertext);
         for (Entry<Integer, Integer> entry : intervalCounts.entrySet()) {
             Integer intervalLength = entry.getKey();
@@ -30,7 +31,7 @@ public class AutoCipher {
         for (int i = 0; i < keyWordLength; i++) {
             String selectedChars = takeChars(keyWordLength, ciphertext, i);
             String likelyDecryption = getLikelyDecryption(selectedChars);
-            jumbledDecryption.add(likelyDecryption);)
+            jumbledDecryption.add(likelyDecryption);
         }
     
         StringBuilder plaintext = new StringBuilder();
