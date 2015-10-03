@@ -1,5 +1,8 @@
+package crypto;
+
 import java.util.HashMap;
-import java.lang.Math.abs;
+import java.util.Map.Entry;
+import java.lang.Math;
 
 public class FrequencyAnalysis {
     // Groups of letters and a rough percentage of their frequency in
@@ -19,8 +22,10 @@ public class FrequencyAnalysis {
     static final String JKQXZ               = "JKQXZjkqxz";
     static final double JKQXZpercentage     = 1.0;
     
+    static HashMap<String, Double> EXPECTEDFREQ = new HashMap<
+        String, Double>();
+    
     static {
-        HashMap<String, Double> EXPECTEDFREQ = new HashMap<String, Double>();
         EXPECTEDFREQ.put(ETAONISRH, ETAONISRHpercentage);
         EXPECTEDFREQ.put(ETAON,     ETAONpercentage);
         EXPECTEDFREQ.put(LNRST,     LNRSTpercentage);
@@ -34,7 +39,8 @@ public class FrequencyAnalysis {
         
         System.out.println("Should be ~33%.");
         
-        HashMap<Character, Integer> freqTable = getCharFrequencyTable(message);
+        HashMap<Character, Integer> freqTable = getCharFrequencyTable(
+            message);
         double pctge = getCharPercentage(VOWELS, freqTable, message.length());
         System.out.println(pctge);
     }
@@ -53,11 +59,14 @@ public class FrequencyAnalysis {
          */
         double total = 0.0;
         
-        HashMap<Character, Integer> charFreqTable = getCharFrequencyTable(message);
-        double perc;
-        for (String charGroup : EXPECTEDFREQ) {
-            expectedPerc = EXPECTEDFREQ.get(charGroup);
-            perc = getCharPercentage(charGroup, charFreqTable, message.length());
+        HashMap<Character, Integer> charFreqTable = getCharFrequencyTable(
+            message);
+        for (Entry<String, Double> entry : EXPECTEDFREQ.entrySet()) {
+            double expectedPerc = entry.getValue();
+            String charGroup = entry.getKey();
+            
+            double perc = getCharPercentage(charGroup, charFreqTable,
+                message.length());
             total += Math.abs(expectedPerc - perc);
         }
         
@@ -72,10 +81,9 @@ public class FrequencyAnalysis {
          */
         int totalFrequency = 0;
         
-        int frequency;
         for (char c : charSequence.toCharArray()) {
             if (charFrequencyTable.containsKey(c)) {
-                frequency = charFrequencyTable.get(c);
+                int frequency = charFrequencyTable.get(c);
                 totalFrequency += frequency;
             }
         }
@@ -87,13 +95,13 @@ public class FrequencyAnalysis {
     public static HashMap<Character, Integer> getCharFrequencyTable (
             String message) {
         /**
-         * Takes a message, maps each character to the number of times it occurs.
+         * Takes a message, maps each character to the
+         * number of times it occurs.
          */
         HashMap<Character, Integer> charFrequencyTable = new HashMap<
             Character, Integer>();
         
         for (char c : message.toCharArray()) {
-            
             if (charFrequencyTable.containsKey(c)) {
                 int cFrequency = charFrequencyTable.get(c);
                 charFrequencyTable.put(c, cFrequency + 1);

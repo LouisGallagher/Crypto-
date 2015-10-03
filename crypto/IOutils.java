@@ -1,9 +1,15 @@
+package crypto;
+
 import java.util.Scanner;
+import java.io.File;
+
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
+import java.io.IOException;
+
 public class IOutils {
-    public static void main (String[] args) {
+    public static void main (String[] args) throws IOException {
         String ciphertext = parseFile("Group1_Problem1.txt", true);
         System.out.println(ciphertext);
     }
@@ -17,16 +23,14 @@ public class IOutils {
         String finalString = "";
         
         Scanner sc = null;
-        
         try {
-            sc = new Scanner(fileName);
+            sc = new Scanner(new File(fileName));
             
             ArrayList<String> lines = new ArrayList<String>();
             
             int linesProcessed = 0;
-            String line;
             while (sc.hasNextLine()) {
-                line = sc.nextLine();
+                String line = sc.nextLine();
                 
                 if (!(hasCharCount && linesProcessed % 2 == 0)) {
                     lines.add(line);

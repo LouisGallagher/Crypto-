@@ -1,20 +1,28 @@
+package crypto;
+
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
 
-import FrequencyAnalysis.*;
-import VigenereCipher.decryptChar;
+import java.io.IOException;
 
 public class AutoCipher {
-    public static void main (String[] args) {
-        String ciphertext = parseFile("Group1_Problem1.txt", true);
-        HashMap<Integer, Integer> intervalCounts = getIntervalLengthFreq(ciphertext);
+    public static void main (String[] args) throws IOException {
+        String ciphertext = IOutils.parseFile("./crypto/Group1_Problem1.txt", true);
+        
+        HashMap<Integer, Integer> intervalCounts = getIntervalLengthFreq(
+            ciphertext);
+        
+        /* Used to look @ intervals & their frequencies.
         for (Entry<Integer, Integer> entry : intervalCounts.entrySet()) {
             Integer intervalLength = entry.getKey();
             Integer count = entry.getValue();
-            System.out.println(intervalLength.toString() + " " + count.toString());
+            
+            System.out.println(intervalLength.toString() + " " +
+                count.toString());
         }
+        */
         
         /*
         Derp sortedIntervalCounts = null;
@@ -24,9 +32,13 @@ public class AutoCipher {
             System.out.println(possibleDecryption);
             System.out.println("\n");
         */
+        String decryption = tryDecryptingAutoCipher(
+            ciphertext, 8);
+        System.out.println(decryption);
     }
     
-    public static String tryDecryptingAutoCipher (String ciphertext, int keyWordLength) {
+    public static String tryDecryptingAutoCipher (String ciphertext,
+            int keyWordLength) {
         ArrayList<String> jumbledDecryption = new ArrayList<String>();
         for (int i = 0; i < keyWordLength; i++) {
             String selectedChars = takeChars(keyWordLength, ciphertext, i);
@@ -47,12 +59,15 @@ public class AutoCipher {
                     plaintext.append(selectedCharsDecrypted.charAt(i));
                 }
             }
+            
+            i++;
         }
         
         return plaintext.toString();
     }
     
-    public static HashMap<Integer, Integer> getIntervalLengthFreq (String message) {
+    public static HashMap<Integer, Integer> getIntervalLengthFreq (
+            String message) {
         /** Returns a HashMap that maps interval length -> frequency.
          * 
          * Interval length is the distance between equal characters
@@ -65,15 +80,16 @@ public class AutoCipher {
          *      3 -> 1,
          *      1 -> 2
          */
-        HashMap<Character, Integer> charIndex = new HashMap<Character, Integer>();
-        HashMap<Integer, Integer> intervalCount = new HashMap<Integer, Integer>();
+        HashMap<Character, Integer> charIndex = new HashMap<
+            Character, Integer>();
+        HashMap<Integer, Integer> intervalCount = new HashMap<
+            Integer, Integer>();
         
-        int intervalLength;
         for (int i = 0; i < message.length(); i++) {
             char c = message.charAt(i);
             
             if (charIndex.containsKey(c)) {
-                intervalLength = i - charIndex.get(c);
+                int intervalLength = i - charIndex.get(c);
                 
                 if (intervalCount.containsKey(intervalLength)) {
                     int count = intervalCount.get(intervalLength);
@@ -91,7 +107,10 @@ public class AutoCipher {
     }
     
     public static String takeChars (int n, String message, int start) {
-        /** Takes characters from "message" in jumps of "n", beginning at "start". */
+        /** 
+         * Takes characters from "message" in jumps of "n", beginning
+         * at "start".
+         */
         StringBuilder sbuilder = new StringBuilder();
         
         for (int i = start; i < message.length(); i += n) {
@@ -107,15 +126,15 @@ public class AutoCipher {
          * possible first keyWordChars and picks the best one using frequency
          * analysis.
          */
-        String mostLikeEnglish;
-        // Smaller means closer match to English, in terms of letter frequency.
+        String mostLikeEnglish = "hello world";
+        // Smaller means closer match to English, in terms of
+        // letter frequency.
         double smallestEnglishDifference = Double.POSITIVE_INFINITY;
         
-        String decrypted;
-        double englishDifference;
         for (char keyWordChar = 'a'; keyWordChar <= 'z'; keyWordChar++) {
-            decrypted = decryptSequence(sequence, keyWordChar);
-            englishDifference = getEnglishDifference(decrypted);
+            String decrypted = decryptSequence(sequence, keyWordChar);
+            double englishDifference = FrequencyAnalysis.getEnglishDifference(
+                decrypted);
             
             if (englishDifference < smallestEnglishDifference) {
                 smallestEnglishDifference = englishDifference;
@@ -142,7 +161,8 @@ public class AutoCipher {
         
         char key = keyWordChar;
         for (int i = 0; i < sequence.length(); i++) {
-            char decryptedChar = decryptChar(sequence.charAt(i), key);
+            char decryptedChar = VigenereCipher.decryptChar(
+                sequence.charAt(i), key);
             resultBuilder.append(decryptedChar);
             key = decryptedChar;
         }
