@@ -14,7 +14,9 @@ public class AutoCipher {
         HashMap<Integer, Integer> intervalCounts = getIntervalLengthFreq(
             ciphertext);
         
-        /* Used to look @ intervals & their frequencies.
+        // Print out intervals & their frequencies.
+        // Ideally, we would sort them by their frequencies and pick the one
+        // at the top, but Java makes that a pain in the ass.
         for (Entry<Integer, Integer> entry : intervalCounts.entrySet()) {
             Integer intervalLength = entry.getKey();
             Integer count = entry.getValue();
@@ -22,16 +24,7 @@ public class AutoCipher {
             System.out.println(intervalLength.toString() + " " +
                 count.toString());
         }
-        */
         
-        /*
-        Derp sortedIntervalCounts = null;
-        from highestCount -> lowestCount, possibleKeyWordLength = intervalLength, only try a few:
-            String possibleDecryption = tryDecryptingAutoCipher(
-                ciphertext, possibleKeyWordLength);
-            System.out.println(possibleDecryption);
-            System.out.println("\n");
-        */
         String decryption = tryDecryptingAutoCipher(
             ciphertext, 8);
         System.out.println(decryption);
