@@ -62,8 +62,8 @@ public class VigenereCipher {
     }
     
     public static char changeChar (char c, char key, boolean encrypt) {
-        char cValue = getCharValue(c);
-        char keyValue = getCharValue(key);
+        char cValue = Utils.getCharValue(c);
+        char keyValue = Utils.getCharValue(key);
         
         char newValue;
         if (encrypt) {
@@ -83,22 +83,5 @@ public class VigenereCipher {
         char newChar = (char)('a' + newValue);
         
         return newChar;
-    }
-    
-    public static char getCharValue (char c) {
-        /** Maps    A,a -> 0,
-         *          B,b -> 1,
-         *          ...
-         *          Z,z -> 25
-         */
-        char base;
-        if (Character.isUpperCase(c)) {
-            base = 'A';
-        }
-        else {
-            base = 'a';
-        }
-        
-        return (char)(c % base);
     }
 }
