@@ -27,14 +27,14 @@ public class VigenereCipher {
          * It is assumed that:
          * key.length() >= plaintext.length().
          */
-        return changeString(plaintext, key, true);
+        return _changeString(plaintext, key, true);
     }
     
     public static String decryptString (String ciphertext, String key) {
-        return changeString(ciphertext, key, false);
+        return _changeString(ciphertext, key, false);
     }
     
-    public static String changeString (String ciphertext, String key,
+    private static String _changeString (String ciphertext, String key,
             boolean encrypt) {
         StringBuilder resultBuilder = new StringBuilder();
         
@@ -54,14 +54,14 @@ public class VigenereCipher {
     }
     
     public static char encryptChar (char c, char key) {
-        return changeChar(c, key, true);
+        return _changeChar(c, key, true);
     }
     
     public static char decryptChar (char c, char key) {
-        return changeChar(c, key, false);
+        return _changeChar(c, key, false);
     }
     
-    public static char changeChar (char c, char key, boolean encrypt) {
+    private static char _changeChar (char c, char key, boolean encrypt) {
         char cValue = Utils.getCharValue(c);
         char keyValue = Utils.getCharValue(key);
         
