@@ -24,7 +24,7 @@ public class Utils {
                     sieve[j] = true;
                 }
             }
-            else if (!m) {
+            else if (!sieve[m]) {
                 result.add(m);
             }
         }
