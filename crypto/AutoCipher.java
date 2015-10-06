@@ -16,7 +16,8 @@ public class AutoCipher {
         
         // Print out intervals & their frequencies.
         // Ideally, we would sort them by their frequencies and pick the one
-        // at the top, but Java makes that a pain in the ass.
+        // at the top, but Java makes that a pain in the ass. Instead, just
+        // pick a likely interval length and hardcode it...for the time being.
         for (Entry<Integer, Integer> entry : intervalCounts.entrySet()) {
             Integer intervalLength = entry.getKey();
             Integer count = entry.getValue();
@@ -26,7 +27,7 @@ public class AutoCipher {
         }
         
         String decryption = tryDecryptingAutoCipher(
-            ciphertext, 8);
+            ciphertext, 8); // 8 is hardcoded for that specific text.
         System.out.println(decryption);
     }
     
