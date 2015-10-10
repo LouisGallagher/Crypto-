@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Utils {
+    public static void main (String[] args) {
+        System.out.println(getInverse(3, 11));
+    }
+    
     public static int getInverse (int a, int n) {
         // Returns (x^-1) mod n, having assumed that x is coprime to n.
         // Based directly on pseudocode from Wikipedia.
