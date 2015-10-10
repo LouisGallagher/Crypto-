@@ -40,6 +40,7 @@ public class Utils {
     public static int[] getCoprimes (int n) {
         // Returns all numbers <n that are coprime to it.
         ArrayList<Integer> result = new ArrayList<Integer>();
+        
         result.add(1);
         
         boolean[] sieve = new boolean[n];
@@ -56,7 +57,7 @@ public class Utils {
             }
         }
         
-        return result.toArray();
+        return toPrimitive(result);
     }
     
     public static int positiveMod (int x, int n) {
@@ -85,5 +86,17 @@ public class Utils {
         }
         
         return (char)(c % base);
+    }
+    
+    public static int[] toPrimitive (ArrayList<Integer> list) {
+        int[] result = new int[list.size()];
+        
+        int i = 0;
+        for (Integer n : list) {
+            result[i] = n;
+            i++;
+        }
+        
+        return result;
     }
 }
