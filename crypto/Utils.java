@@ -5,7 +5,12 @@ import java.util.ArrayList;
 
 public class Utils {
     public static void main (String[] args) {
+        System.out.println("Hello world!");
         System.out.println(getInverse(3, 11));
+        int[] coprimes = getCoprimes(15);
+        for (int i = 0; i < coprimes.length; i++) {
+            System.out.println(coprimes[i]);
+        }
     }
     
     public static int getInverse (int a, int n) {
@@ -23,7 +28,7 @@ public class Utils {
             
             int tempr = r;
             r = newr;
-            newr = r - quotient * newr;
+            newr = tempr - quotient * newr;
         }
         
         if (r > 1) {
