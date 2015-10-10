@@ -4,10 +4,33 @@ import java.util.HashMap;
 import java.util.ArrayList;
 
 public class Utils {
-    public static int getModularMultiplicativeInverse (int x, int n) {
+    public static int getInverse (int a, int n) {
         // Returns (x^-1) mod n, having assumed that x is coprime to n.
-        int result = -1;
-        // TBD
+        // Based directly on pseudocode from Wikipedia.
+        int t = 0, newt = 1;
+        int r = n, newr = a;
+        
+        while (newr != 0) {
+            int quotient = r / newr;
+            
+            int tempt = t;
+            t = newt;
+            newt = tempt - quotient * newt;
+            
+            int tempr = r;
+            r = newr;
+            newr = r - quotient * newr;
+        }
+        
+        if (r > 1) {
+            return -1;
+        }
+        
+        if (t < 0) {
+            t = t + n;
+        }
+        
+        return t;
     }
     
     public static int[] getCoprimes (int n) {
