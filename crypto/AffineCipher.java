@@ -3,7 +3,9 @@ package crypto;
 import java.lang.StringBuilder;
 
 public class AffineCipher {
-    
+    public static String crackDigraph (String ciphertext, int n) {
+        // TBD.
+    }
     
     public static char digraphEncrypt (char x, char y, int keyA, int keyB, int n) {
         /** Params: x & y - char pair to be encrypted.
@@ -24,11 +26,26 @@ public class AffineCipher {
     
     public static String crackAffine (String ciphertext, int n) {
         // n - alphabet size.
-        String possiblePlaintext = "";
-        Double bestEnglishScore = Double.POSITIVE_INFINITY;
-        for (int i = 0; i  < ciphertext.length(); i++) {
+        String bestPlaintext = "";
+        Double lowestEnglishDifference = Double.POSITIVE_INFINITY;
+        
+        int[] possibleKeys = Utils.getCoprimes(n);
+        for (int i = 0; i < possibleKeys.length; i++) {
+            int keyA = possibleKeys[i];
             
+            for (int keyB = 0; keyB < n; keyB++) {
+                String possiblePlaintext = decryptString(ciphertext, keyA, keyB, n);
+                Double englishDifference = FrequencyAnalysis.getEnglishDifference(
+                    possiblePlaintext);
+                
+                if (englishDifference < lowestEnglishDifference) {
+                    bestPlaintext = possiblePlaintext;
+                    lowestEnglishDifference = englishDifference;
+                }
+            }
         }
+        
+        return bestPlaintext;
     }
     
     public static String encryptString (String plaintext, int keyA, int keyB, int n) {
