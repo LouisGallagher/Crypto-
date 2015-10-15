@@ -8,7 +8,7 @@ public class AffineCipher {
         String plaintext1 = decryptString(test1, 5, 8, 26);
         System.out.println(plaintext1);
         
-        String plaintext2 = crackAffine(test1);
+        String plaintext2 = crackAffine(test1, 26);
         System.out.println(plaintext2);
     }
     
@@ -21,7 +21,7 @@ public class AffineCipher {
             int keyA = aValues[i];
             
             for (int keyB = 0; keyB < n * n; keyB++) {
-                String candidate = digraphDEcrypt(ciphertext, keyA, keyB, n);
+                String candidate = digraphDecrypt(ciphertext, keyA, keyB, n);
                 double englishDiff = FrequencyAnalysis.getEnglishDifference(
                     candidate);
                     
@@ -32,7 +32,7 @@ public class AffineCipher {
             }
         }
         
-        return bestEnglishDiff;
+        return bestMatch;
     }
     
     public static String digraphDecrypt (String ciphertext, int keyA, int keyB, int n) {
@@ -107,7 +107,7 @@ public class AffineCipher {
     public static String decryptString (String ciphertext, int keyA, int keyB, int n) {
         StringBuilder result = new StringBuilder();
         
-        int keyAinverse = Utils.getInverse(keyA);
+        int keyAinverse = Utils.getInverse(keyA, n);
         for (int i = 0; i < ciphertext.length(); i++) {
             char plainChar = affineDecrypt(ciphertext.charAt(i), keyAinverse, keyB, n);
             result.append(plainChar);
@@ -131,6 +131,6 @@ public class AffineCipher {
          * Parameters:
          *      Same as above, but keyAinverse = (a^-1) mod n
          */
-        return Utils.positiveMod(keyAinverse * (c - b), n);
+        return (char)Utils.positiveMod(keyAinverse * (c - keyB), n);
     }
 }
